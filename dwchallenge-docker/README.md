@@ -36,7 +36,20 @@ Wanna change the port? Edit:
       - [your favorite port]:8888
 ```
 
-
+## Complete docker-compose.yml
+```
+version: '3.7'
+services:
+  jupyter:
+    build:
+      context: .
+    ports:
+      - 8888:8888
+    volumes:
+      - type: bind
+        source: ..
+        target: /data/notebooks
+```
 
 # References
 
