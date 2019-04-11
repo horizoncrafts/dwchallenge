@@ -32,11 +32,12 @@ WORKDIR /data/notebooks
 
 EXPOSE 8888
 
+#not sure if this changes anything
 SHELL ["/bin/bash", "-c"]
 
 #RUN ["conda", "activate", "$CONDA_ENV"]
-#RUN ps -a
+#CMD ["jupyter", "notebook", "--ip", "0.0.0.0", "--allow-root", "--no-browser"]
 
-RUN ["/bin/bash", "-c", "conda init bash && conda activate python36"]
-
-CMD ["jupyter", "notebook", "--ip", "0.0.0.0", "--allow-root", "--no-browser"]
+# needs a trick to run conda initialization. The reason is, the original .bashrc stops its processing when the $PS1 is empty, hence whetever conda added at the of the file could not run
+# eventually, this needs to be converted to entrypoint script
+CMD ["/bin/bash", "-c", "source $ANACONDA_PATH/etc/profile.d/conda.sh && conda activate $CONDA_ENV && jupyter notebook --ip 0.0.0.0 --allow-root --no-browser"]
