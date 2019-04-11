@@ -1,6 +1,6 @@
 # Usage
 
-**Warning** After the first execution this will take more then 5GB of your diskspace.
+**Warning**: After the first execution this will take more then 5GB of your diskspace.
 
 ## Simple
 
