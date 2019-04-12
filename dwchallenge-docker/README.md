@@ -9,7 +9,7 @@ Having docker installed and downloaded/cloned these files, change directory (cd)
 docker-compose up
 ```
 
-For the first time it's going to take few to few-teen minutes to build the image, but the consequential runs will be very fast.
+For the first time it's going to take few to twenty minutes to build the image, but the consequential runs will be very fast.
 
 Eventually it'll produce in your console something like this:
 ``` 
