@@ -3,6 +3,7 @@ services:
   jupyter:
     build:
       context: .
+    #image: horizoncrafts/anaconda_tf_keras
     ports:
       - 8888:8888
     volumes:
