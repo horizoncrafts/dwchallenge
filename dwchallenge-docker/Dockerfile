@@ -7,22 +7,14 @@ ENV LANG=C.UTF-8 LC_ALL=C.UTF-8
 ENV PATH $ANACONDA_PATH/bin:$PATH
 
 
-RUN apt-get update --fix-missing && apt-get install -y wget bzip2 ca-certificates git man
-
-RUN wget --quiet https://repo.anaconda.com/archive/$ANACONDA_FILE && chmod +x $ANACONDA_FILE
-
-RUN ./$ANACONDA_FILE -b -p $ANACONDA_PATH && rm $ANACONDA_FILE
-
-RUN ln -s $ANACONDA_PATH/etc/profile.d/conda.sh /etc/profile.d/conda.sh && \
+RUN apt-get update --fix-missing && apt-get install -y wget bzip2 ca-certificates && \
+    wget --quiet https://repo.anaconda.com/archive/$ANACONDA_FILE && chmod +x $ANACONDA_FILE && \
+	./$ANACONDA_FILE -b -p $ANACONDA_PATH && rm $ANACONDA_FILE && \
+	ln -s $ANACONDA_PATH/etc/profile.d/conda.sh /etc/profile.d/conda.sh && \
     echo ". $ANACONDA_PATH/etc/profile.d/conda.sh" >> ~/.bashrc && \
-    echo "conda activate base" >> ~/.bashrc
-
-
-# additional packages
-RUN conda install -y --quiet tensorflow
-
-RUN conda install -y --quiet keras
-
+    echo "conda activate base" >> ~/.bashrc && \
+	conda install -y --quiet tensorflow && \
+	conda install -y --quiet keras
 
 WORKDIR /data/notebooks
 
