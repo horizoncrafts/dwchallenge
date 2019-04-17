@@ -1,5 +1,7 @@
 # Usage
 
+**Warning**: There's no authentication at all in this version. Check this note: https://jupyter-notebook.readthedocs.io/en/latest/security.html#alternatives-to-token-authentication
+
 **Warning**: After the first execution this will take more then 5GB of your diskspace.
 
 ## Simple
@@ -11,14 +13,7 @@ docker-compose up
 
 For the first time it's going to take few to twenty minutes to build the image, but the consequential runs will be very fast.
 
-Eventually it'll produce in your console something like this:
-``` 
- or 127.0.0.1):8888/?token=3c0d22ecb67697d7f5df94c0059a8ad57c30bd06f0e5d163
-```
-Just enter in your browser:
-```
-https://localhost:8888/?token=3c0d22ecb67697d7f5df94c0059a8ad57c30bd06f0e5d163
-```
+Once the service has started go to your web browser and navigate to `https://localhost:8888`. **No authentication required!**
 
 ## Some customization
 
