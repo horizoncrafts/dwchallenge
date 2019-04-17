@@ -25,10 +25,7 @@ RUN conda install -y --quiet keras
 
 #disabling any authentication
 RUN jupyter notebook --generate-config
-RUN cat <<_EOF_ >> ~/.jupyter/jupyter_notebook_config.py \
-c.NotebookApp.token = '' \
-c.NotebookApp.password = '' \
-_EOF_
+RUN printf "\n#added in dockerfile\nc.NotebookApp.token = '' \nc.NotebookApp.password = ''\n" >> ~/.jupyter/jupyter_notebook_config.py 
 
 WORKDIR /data/notebooks
 
