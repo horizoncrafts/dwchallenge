@@ -18,14 +18,12 @@ RUN ln -s $ANACONDA_PATH/etc/profile.d/conda.sh /etc/profile.d/conda.sh && \
     echo "conda activate base" >> ~/.bashrc
 
 
-# additional packages
-RUN conda install -y --quiet tensorflow
-
-RUN conda install -y --quiet keras
+# additional packages: tensorflow and keras
+RUN conda install -y --quiet tensorflow && conda install -y --quiet keras
 
 #disabling any authentication
-RUN jupyter notebook --generate-config
-RUN printf "\n#added in dockerfile\nc.NotebookApp.token = '' \nc.NotebookApp.password = ''\n" >> ~/.jupyter/jupyter_notebook_config.py 
+RUN jupyter notebook --generate-config && \
+    printf "\n#added by dockerfile\nc.NotebookApp.token = '' \nc.NotebookApp.password = ''\n" >> ~/.jupyter/jupyter_notebook_config.py 
 
 WORKDIR /data/notebooks
 
