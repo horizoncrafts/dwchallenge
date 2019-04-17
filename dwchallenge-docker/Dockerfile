@@ -23,6 +23,12 @@ RUN conda install -y --quiet tensorflow
 
 RUN conda install -y --quiet keras
 
+#disabling any authentication
+RUN jupyter notebook --generate-config
+RUN cat <<_EOF_ >> ~/.jupyter/jupyter_notebook_config.py \
+c.NotebookApp.token = '' \
+c.NotebookApp.password = '' \
+_EOF_
 
 WORKDIR /data/notebooks
 
