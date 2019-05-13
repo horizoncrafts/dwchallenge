@@ -5,6 +5,7 @@ services:
       context: .
     ports:
       - 8888:8888
+      - 5901:5901
     volumes:
       - type: bind
         source: ..

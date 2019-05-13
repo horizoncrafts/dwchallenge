@@ -7,7 +7,7 @@ ENV LANG=C.UTF-8 LC_ALL=C.UTF-8
 ENV PATH $ANACONDA_PATH/bin:$PATH
 
 
-RUN apt-get update --fix-missing && apt-get install -y wget bzip2 ca-certificates git man
+RUN apt-get update --fix-missing && apt-get install -y wget bzip2 ca-certificates git man zip
 
 RUN wget --quiet https://repo.anaconda.com/archive/$ANACONDA_FILE && chmod +x $ANACONDA_FILE
 
@@ -24,6 +24,13 @@ RUN conda install -y --quiet tensorflow && conda install -y --quiet keras
 # additional packages for challange03: python-socketio, eventlet, flask 
 RUN conda install -y --quiet python-socketio && conda install -y --quiet -c conda-forge eventlet && conda install -y --quiet flask
 
+RUN apt-get -y --quiet install vnc4server
+
+RUN wget https://s3-us-west-1.amazonaws.com/udacity-selfdrivingcar/Term1-Sim/term1-simulator-linux.zip && \
+    unzip term1-simulator-linux.zip && \
+    cd beta_simulator_linux && \
+    chmod +x *.x86*
+
 #disabling any authentication
 RUN jupyter notebook --generate-config && \
     printf "\n#added by dockerfile\nc.NotebookApp.token = '' \nc.NotebookApp.password = ''\n" >> ~/.jupyter/jupyter_notebook_config.py 
@@ -31,5 +38,6 @@ RUN jupyter notebook --generate-config && \
 WORKDIR /data/notebooks
 
 EXPOSE 8888
+EXPOSE 5901
 
 CMD ["jupyter", "notebook", "--ip", "0.0.0.0", "--allow-root", "--no-browser"]
