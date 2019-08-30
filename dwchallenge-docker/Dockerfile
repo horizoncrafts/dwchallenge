@@ -1,6 +1,6 @@
 FROM ubuntu:latest
 
-ENV ANACONDA_FILE Anaconda3-2019.03-Linux-x86_64.sh
+ENV ANACONDA_FILE Anaconda3-2019.07-Linux-x86_64.sh
 ENV ANACONDA_PATH /opt/anaconda3
 
 ENV LANG=C.UTF-8 LC_ALL=C.UTF-8
