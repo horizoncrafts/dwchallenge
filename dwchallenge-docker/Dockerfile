@@ -24,6 +24,9 @@ RUN conda install -y --quiet tensorflow && conda install -y --quiet keras
 # additional packages for challange03: python-socketio, eventlet, flask 
 RUN conda install -y --quiet python-socketio && conda install -y --quiet -c conda-forge eventlet && conda install -y --quiet flask
 
+# additional packages for challange04: pyLDAvis, gensim
+RUN conda install -y --quiet -c conda-forge pyLDAvis && pip install gensim
+
 #disabling any authentication
 RUN jupyter notebook --generate-config && \
     printf "\n#added by dockerfile\nc.NotebookApp.token = '' \nc.NotebookApp.password = ''\n" >> ~/.jupyter/jupyter_notebook_config.py 
